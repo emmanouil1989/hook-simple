@@ -1,15 +1,19 @@
 import React from 'react'
+import axios from 'axios';
+
+const ResourceList = () => {
 
 
-class ResourceList extends React.Component{
+    const fetchResource = async ()  => {
+        const response = await axios.get(`https://jsonplaceholder.typecode.com/${this.props.resource}`);
+        this.setState({resources: response.data})
 
-    render() {
-        return(
-            <div>{this.props.resource}</div>
-        )
-    }
+    };
 
-}
+    return(
+        <div>{this.props.resources.length}</div>
+    )
+};
 
 
 export default ResourceList;
