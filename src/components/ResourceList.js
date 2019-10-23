@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
 
-const ResourceList = (props) => {
+const useResources = (resource)=>{
     const [resources, setResources] = useState([]);
-    const {resource} = props;
 
     //use effect doen't like promises called inside it. it should be normal functions. another solution is to define a function with the async call and immediately call it.
     useEffect(()=>{
@@ -16,6 +15,12 @@ const ResourceList = (props) => {
         setResources(response.data)
     };
 
+    return resources
+}
+
+const ResourceList = ({resource}) => {
+
+    const resources = useResources(resource);
     return(
         <ul>
             {
